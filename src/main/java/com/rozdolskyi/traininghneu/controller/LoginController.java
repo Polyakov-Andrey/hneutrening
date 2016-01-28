@@ -19,9 +19,4 @@ public class LoginController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout() {
-		return "redirect:/info";
-	}
-
 }
