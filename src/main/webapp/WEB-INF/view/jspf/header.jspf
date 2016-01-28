@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=utf8"
+	pageEncoding="utf8"%>
+<%@ page session="false"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html>
+<head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+</head>
+<body>
+	<div class="container">
+		<div class="page-header">
+			<div class="row text-right">
+				<a href="<c:url value="/login"/>"><spring:message
+						code="label.signin" /></a>
+			</div>
+			<div class="row">
+				<h1>
+					<spring:message code="label.header" />
+				</h1>
+			</div>
+		</div>
+	</div>
