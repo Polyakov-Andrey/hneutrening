@@ -40,9 +40,7 @@
 								placeholder="password">
 						</div>
 						<div style="margin-top: 10px" class="form-group">
-							<div class="col-sm-12 controls">
-								<input name="submit" type="submit" class="btn btn-success" />
-							</div>
+							<button type="submit" style="width:100%" class="btn btn-success"><spring:message code="label.login"/></button>
 						</div>
 					</form>
 				</div>
