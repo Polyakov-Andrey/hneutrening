@@ -13,7 +13,7 @@ public class LoginController {
 	public ModelAndView login(@RequestParam(value = "error", required = false) String error) {
 		ModelAndView model = new ModelAndView();
 		if (error != null) {
-			model.addObject("error", "Invalid username and password!");
+			model.addObject("error", Boolean.TRUE);
 		}
 		model.setViewName("login");
 		return model;

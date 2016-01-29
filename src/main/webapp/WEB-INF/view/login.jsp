@@ -20,8 +20,11 @@
 					</div>
 				</div>
 				<div style="padding-top: 30px" class="panel-body">
-					<div style="display: none" id="login-alert"
-						class="alert alert-danger col-sm-12"></div>
+					<c:if test="${error}">
+						<div id="login-alert" class="alert alert-danger col-sm-12">
+							<spring:message code="error.login" />
+						</div>
+					</c:if>
 					<form name='loginForm'
 						action="<c:url value='/j_spring_security_check' />" method='POST'>
 						<div style="margin-bottom: 25px" class="input-group">
