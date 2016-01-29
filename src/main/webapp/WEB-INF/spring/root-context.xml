@@ -15,8 +15,10 @@
 
 	<context:annotation-config />
 
-	<context:component-scan base-package="com.rozdolskyi.hneutrainningsession.dao" />
-	<context:component-scan base-package="com.rozdolskyi.hneutrainningsession.service" />
+	<context:component-scan base-package="com.rozdolskyi.traininghneu.dao" />
+	<context:component-scan base-package="com.rozdolskyi.traininghneu.service" />
+	<context:component-scan base-package="com.rozdolskyi.traininghneu.facade" />
+	<context:component-scan base-package="com.rozdolskyi.traininghneu.converter" />
 				
 	<import resource="security.xml" />
 
