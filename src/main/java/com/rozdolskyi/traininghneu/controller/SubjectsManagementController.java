@@ -35,7 +35,7 @@ public class SubjectsManagementController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String addSubject(@ModelAttribute("subject") SubjectData subject) {
 		managementFacade.addSubject(subject);
-		return "redirect:/management";
+		return "redirect:/management/subjects";
 	}
 	
 }

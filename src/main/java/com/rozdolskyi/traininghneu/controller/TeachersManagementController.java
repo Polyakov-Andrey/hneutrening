@@ -25,6 +25,6 @@ public class TeachersManagementController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String addStudent(@ModelAttribute("teacher") TeacherData teacher) {
 		managementFacade.addTeacher(teacher);
-		return "redirect:/management";
+		return "redirect:/management/teachers";
 	}
 }
