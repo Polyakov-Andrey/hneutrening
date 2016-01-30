@@ -1,7 +1,5 @@
 package com.rozdolskyi.traininghneu.facade.impl;
 
-import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -16,7 +14,7 @@ public class DefaultManagementFacade implements ManagementFacade{
 
 	@Autowired
 	private ManagementService managementService;
-	@Resource
+	@Autowired
 	private Converter<TeacherData, TeacherModel> teacherDataToModelConverter;
 	
 	public void addTeacher(TeacherData teacherData) {

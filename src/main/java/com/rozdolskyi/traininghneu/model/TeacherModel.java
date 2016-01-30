@@ -2,8 +2,16 @@ package com.rozdolskyi.traininghneu.model;
 
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = TeacherModel.TYPE_CODE)
 public class TeacherModel {
 	
+	protected static final String TYPE_CODE = "teachers";
+	
+	@Id
+	private String id;
 	private String name;
 	private String surname;
 	private String patronymic;
@@ -11,6 +19,12 @@ public class TeacherModel {
 	private long experience;
 	private List<SubjectModel> subjects;
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
