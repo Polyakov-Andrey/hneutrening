@@ -23,7 +23,7 @@
 		</div>
 		<div class="form-group">
 			<label for="experience"><spring:message code="label.page.newteacher.experience"/></label>
-			<form:input path="experience" cssClass="form-control" />
+			<form:input path="experience" type="number" cssClass="form-control" />
 		</div>
 		<div class="form-group">
 			<button type="submit" style="width:100%" class="btn btn-success"><spring:message code="button.add"/></button>

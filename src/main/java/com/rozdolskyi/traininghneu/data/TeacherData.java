@@ -4,6 +4,7 @@ import java.util.List;
 
 public class TeacherData {
 	
+	private String id;
 	private String name;
 	private String surname;
 	private String patronymic;
@@ -11,6 +12,12 @@ public class TeacherData {
 	private long experience;
 	private List<SubjectData> subjects;
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -47,5 +54,4 @@ public class TeacherData {
 	public void setSubjects(List<SubjectData> subjects) {
 		this.subjects = subjects;
 	}
-	
 }
