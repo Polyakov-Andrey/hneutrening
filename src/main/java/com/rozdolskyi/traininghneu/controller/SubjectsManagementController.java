@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,7 +20,7 @@ public class SubjectsManagementController {
 
 	@Autowired
 	private ManagementFacade managementFacade;
-	
+
 	@RequestMapping
 	public String getAllSubjects(ModelMap model) {
 		List<SubjectData> subjects = managementFacade.getSubjects();
@@ -37,5 +38,11 @@ public class SubjectsManagementController {
 		managementFacade.addSubject(subject);
 		return "redirect:/management/subjects";
 	}
-	
+
+	@RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
+	public String remove(@PathVariable String id) {
+		managementFacade.removeSubject(id);
+		return "redirect:/management/subjects";
+	}
+
 }

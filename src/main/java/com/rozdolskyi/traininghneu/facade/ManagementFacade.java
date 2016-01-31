@@ -14,5 +14,13 @@ public interface ManagementFacade {
 	void addSubject(SubjectData subject);
 
 	List<SubjectData> getSubjects();
+
+	void removeTeacher(String id);
+	
+	void removeSubject(String id);
+	
+	TeacherData getTeacher(String id);
+	
+	SubjectData getSubject(String id);
 	
 }

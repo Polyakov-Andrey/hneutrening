@@ -17,7 +17,7 @@ public class TeacherModelToDataConverter implements Converter<TeacherModel, Teac
 
 	@Autowired
 	private Converter<SubjectModel, SubjectData> subjectModelToDataConverter;
-	
+
 	public TeacherData convert(TeacherModel teacherModel) {
 		TeacherData teacherData = new TeacherData();
 		teacherData.setId(teacherModel.getId());
@@ -26,9 +26,11 @@ public class TeacherModelToDataConverter implements Converter<TeacherModel, Teac
 		teacherData.setPatronymic(teacherModel.getPatronymic());
 		teacherData.setPhone(teacherModel.getPhone());
 		teacherData.setExperience(teacherModel.getExperience());
-		List<SubjectData> subjectData = teacherModel.getSubjects().stream()
-				.map(subjectModelToDataConverter::convert).collect(Collectors.toList());
-		teacherData.setSubjects(subjectData);
+		if (teacherModel.getSubjects() != null) {
+			List<SubjectData> subjectData = teacherModel.getSubjects().stream()
+					.map(subjectModelToDataConverter::convert).collect(Collectors.toList());
+			teacherData.setSubjects(subjectData);
+		}
 		return teacherData;
 	}
 

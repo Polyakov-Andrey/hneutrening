@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.rozdolskyi.traininghneu.dao.ManagementDao;
@@ -16,20 +18,44 @@ public class DefaultManagementDao implements ManagementDao{
 	@Autowired 
 	private MongoOperations mongoOperations;
 
+	@Override
 	public void addTeacher(TeacherModel teacherModel) {
 		mongoOperations.save(teacherModel);
 	}
 
+	@Override
 	public List<TeacherModel> getTeachers() {
 		return mongoOperations.findAll(TeacherModel.class);
 	}
 
+	@Override
 	public void addSubject(SubjectModel subjectModel) {
 		mongoOperations.save(subjectModel);
 	}
 
+	@Override
 	public List<SubjectModel> getSubjects() {
 		return mongoOperations.findAll(SubjectModel.class);
+	}
+
+	@Override
+	public void removeTeacher(String id) {
+		mongoOperations.remove(Query.query(Criteria.where("id").is(id)), TeacherModel.class);
+	}
+
+	@Override
+	public void removeSubject(String id) {
+		mongoOperations.remove(Query.query(Criteria.where("id").is(id)), SubjectModel.class);
+	}
+
+	@Override
+	public TeacherModel getTeacher(String id) {
+		return mongoOperations.findOne(Query.query(Criteria.where("id").is(id)), TeacherModel.class);
+	}
+
+	@Override
+	public SubjectModel getSubject(String id) {
+		return mongoOperations.findOne(Query.query(Criteria.where("id").is(id)), SubjectModel.class);
 	}
 
 }

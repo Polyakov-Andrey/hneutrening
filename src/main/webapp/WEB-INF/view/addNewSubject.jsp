@@ -14,7 +14,7 @@
 			<form:input path="price" type="number" cssClass="form-control" />
 		</div>
 		<div class="form-group">
-			<button type="submit" style="width: 100%" class="btn btn-success">
+			<button type="submit" class="btn btn-success input-block-level form-control">
 				<spring:message code="button.add" />
 			</button>
 		</div>

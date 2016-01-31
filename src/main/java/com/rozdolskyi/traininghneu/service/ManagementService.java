@@ -14,5 +14,13 @@ public interface ManagementService {
 	void addSubject(SubjectModel subjectModel);
 
 	List<SubjectModel> getSubjects();
+
+	void removeTeacher(String id);
+
+	void removeSubject(String id);
+	
+	TeacherModel getTeacher(String id);
+	
+	SubjectModel getSubject(String id);
 	
 }

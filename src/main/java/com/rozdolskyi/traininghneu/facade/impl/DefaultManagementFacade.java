@@ -54,4 +54,24 @@ public class DefaultManagementFacade implements ManagementFacade {
 		return subjectData;
 	}
 
+	@Override
+	public void removeTeacher(String id) {
+		managementService.removeTeacher(id);
+	}
+
+	@Override
+	public void removeSubject(String id) {
+		managementService.removeSubject(id);
+	}
+
+	@Override
+	public TeacherData getTeacher(String id) {
+		return teacherModelToDataConverter.convert(managementService.getTeacher(id));
+	}
+
+	@Override
+	public SubjectData getSubject(String id) {
+		return subjectModelToDataConverter.convert(managementService.getSubject(id));
+	}
+
 }

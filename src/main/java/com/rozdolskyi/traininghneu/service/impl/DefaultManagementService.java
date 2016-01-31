@@ -36,4 +36,24 @@ public class DefaultManagementService implements ManagementService {
 		return managementDao.getSubjects();
 	}
 
+	@Override
+	public void removeTeacher(String id) {
+		managementDao.removeTeacher(id);
+	}
+
+	@Override
+	public void removeSubject(String id) {
+		managementDao.removeSubject(id);
+	}
+
+	@Override
+	public TeacherModel getTeacher(String id) {
+		return managementDao.getTeacher(id);
+	}
+
+	@Override
+	public SubjectModel getSubject(String id) {
+		return managementDao.getSubject(id);
+	}
+
 }
