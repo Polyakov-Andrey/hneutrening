@@ -11,38 +11,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.rozdolskyi.traininghneu.data.SubjectData;
-import com.rozdolskyi.traininghneu.facade.SubjectFacade;
+import com.rozdolskyi.traininghneu.data.GroupData;
+import com.rozdolskyi.traininghneu.facade.GroupFacade;
 
 @Controller
-@RequestMapping(value = "management/subjects")
-public class SubjectsManagementController {
+@RequestMapping(value = "management/groups")
+public class GroupsManagementController {
 
 	@Autowired
-	private SubjectFacade subjectFacade;
+	private GroupFacade groupFacade;
 
 	@RequestMapping
-	public String getAllSubjects(ModelMap model) {
-		List<SubjectData> subjects = subjectFacade.getSubjects();
-		model.addAttribute("subjects", subjects);
-		return "subjects";
+	public String getAllGroups(ModelMap model) {
+		List<GroupData> groups = groupFacade.getGroups();
+		model.addAttribute("groups", groups);
+		return "groups";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public ModelAndView addSubject() {
-		return new ModelAndView("addNewSubject", "command", new SubjectData());
+	public ModelAndView addGroup() {
+		return new ModelAndView("addNewGroup", "command", new GroupData());
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addSubject(@ModelAttribute("subject") SubjectData subject) {
-		subjectFacade.addSubject(subject);
-		return "redirect:/management/subjects";
+	public String addGroup(@ModelAttribute("group") GroupData group) {
+		groupFacade.addGroup(group);
+		return "redirect:/management/groups";
 	}
 
 	@RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
 	public String remove(@PathVariable String id) {
-		subjectFacade.removeSubject(id);
-		return "redirect:/management/subjects";
+		groupFacade.removeGroup(id);
+		return "redirect:/management/groups";
 	}
 
 }

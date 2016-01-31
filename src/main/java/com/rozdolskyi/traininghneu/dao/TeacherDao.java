@@ -5,7 +5,7 @@ import java.util.List;
 import com.rozdolskyi.traininghneu.model.SubjectModel;
 import com.rozdolskyi.traininghneu.model.TeacherModel;
 
-public interface ManagementDao {
+public interface TeacherDao {
 
 	void addTeacher(TeacherModel teacherModel);
 	

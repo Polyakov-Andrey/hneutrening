@@ -16,15 +16,18 @@ import org.springframework.web.servlet.ModelAndView;
 import com.rozdolskyi.traininghneu.data.SubjectData;
 import com.rozdolskyi.traininghneu.data.TeacherData;
 import com.rozdolskyi.traininghneu.editor.StringToSubjectEditor;
-import com.rozdolskyi.traininghneu.facade.ManagementFacade;
+import com.rozdolskyi.traininghneu.facade.SubjectFacade;
+import com.rozdolskyi.traininghneu.facade.TeacherFacade;
 
 @Controller
 @RequestMapping(value = "management/teachers")
 public class TeachersManagementController {
 
 	@Autowired
-	private ManagementFacade managementFacade;
-
+	private TeacherFacade teacherFacade;
+	@Autowired
+	private SubjectFacade subjectFacade;
+	
 	@Autowired
 	private StringToSubjectEditor subjectEditor;
 
@@ -35,27 +38,27 @@ public class TeachersManagementController {
 
 	@RequestMapping
 	public String getAllSubjects(ModelMap model) {
-		List<TeacherData> teachers = managementFacade.getTeachers();
+		List<TeacherData> teachers = teacherFacade.getTeachers();
 		model.addAttribute("teachers", teachers);
 		return "teachers";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView add(ModelMap model) {
-		List<SubjectData> allSubjecs = managementFacade.getSubjects();
+		List<SubjectData> allSubjecs = subjectFacade.getSubjects();
 		model.addAttribute("subjectsForChose", allSubjecs);
 		return new ModelAndView("addNewTeacher", "command", new TeacherData());
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(@ModelAttribute("teacher") TeacherData teacher) {
-		managementFacade.addTeacher(teacher);
+		teacherFacade.addTeacher(teacher);
 		return "redirect:/management/teachers";
 	}
 	
 	@RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
 	public String remove(@PathVariable String id) {
-		managementFacade.removeTeacher(id);
+		teacherFacade.removeTeacher(id);
 		return "redirect:/management/teachers";
 	}
 }

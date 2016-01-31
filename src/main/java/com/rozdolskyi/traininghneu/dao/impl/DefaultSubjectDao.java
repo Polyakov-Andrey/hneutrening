@@ -8,25 +8,14 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
-import com.rozdolskyi.traininghneu.dao.ManagementDao;
+import com.rozdolskyi.traininghneu.dao.SubjectDao;
 import com.rozdolskyi.traininghneu.model.SubjectModel;
-import com.rozdolskyi.traininghneu.model.TeacherModel;
 
 @Repository
-public class DefaultManagementDao implements ManagementDao{
+public class DefaultSubjectDao implements SubjectDao {
 
-	@Autowired 
+	@Autowired
 	private MongoOperations mongoOperations;
-
-	@Override
-	public void addTeacher(TeacherModel teacherModel) {
-		mongoOperations.save(teacherModel);
-	}
-
-	@Override
-	public List<TeacherModel> getTeachers() {
-		return mongoOperations.findAll(TeacherModel.class);
-	}
 
 	@Override
 	public void addSubject(SubjectModel subjectModel) {
@@ -39,18 +28,8 @@ public class DefaultManagementDao implements ManagementDao{
 	}
 
 	@Override
-	public void removeTeacher(String id) {
-		mongoOperations.remove(Query.query(Criteria.where("id").is(id)), TeacherModel.class);
-	}
-
-	@Override
 	public void removeSubject(String id) {
 		mongoOperations.remove(Query.query(Criteria.where("id").is(id)), SubjectModel.class);
-	}
-
-	@Override
-	public TeacherModel getTeacher(String id) {
-		return mongoOperations.findOne(Query.query(Criteria.where("id").is(id)), TeacherModel.class);
 	}
 
 	@Override
