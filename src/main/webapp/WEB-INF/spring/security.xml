@@ -5,13 +5,15 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
+	<http pattern="/resources/**" security="none" />
+
 	<http auto-config="true" use-expressions="true">
 		<intercept-url pattern="/management/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/login" access="isAnonymous()" />
 		<form-login login-page="/login" default-target-url="/management"
 			authentication-failure-url="/login?error" username-parameter="username"
 			password-parameter="password" />
-		<logout logout-success-url="/info" logout-url="/logout"/>
+		<logout logout-success-url="/info" logout-url="/logout" />
 	</http>
 
 	<authentication-manager>
