@@ -12,4 +12,6 @@ public interface GroupService {
 	
 	void removeGroup(String id);
 
+	GroupModel getGroup(String id);
+
 }

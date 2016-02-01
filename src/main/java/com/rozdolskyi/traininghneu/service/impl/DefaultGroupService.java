@@ -30,4 +30,9 @@ public class DefaultGroupService implements GroupService {
 		groupDao.removeGroup(id);
 	}
 
+	@Override
+	public GroupModel getGroup(String id) {
+		return groupDao.getGroup(id);
+	}
+
 }

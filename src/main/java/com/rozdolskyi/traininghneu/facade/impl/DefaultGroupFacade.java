@@ -40,4 +40,10 @@ public class DefaultGroupFacade implements GroupFacade {
 		groupService.removeGroup(id);
 	}
 
+	@Override
+	public GroupData getGroup(String id) {
+		GroupModel groupModel = groupService.getGroup(id);
+		return groupModelToDataConverter.convert(groupModel);
+	}
+
 }

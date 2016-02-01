@@ -11,5 +11,7 @@ public interface GroupFacade {
 	List<GroupData> getGroups();
 	
 	void removeGroup(String id);
+	
+	GroupData getGroup(String id);
 		
 }

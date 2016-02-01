@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.rozdolskyi.traininghneu.dao.TeacherDao;
-import com.rozdolskyi.traininghneu.model.SubjectModel;
 import com.rozdolskyi.traininghneu.model.TeacherModel;
 
 @Repository
@@ -29,33 +28,13 @@ public class DefaultTeacherDao implements TeacherDao{
 	}
 
 	@Override
-	public void addSubject(SubjectModel subjectModel) {
-		mongoOperations.save(subjectModel);
-	}
-
-	@Override
-	public List<SubjectModel> getSubjects() {
-		return mongoOperations.findAll(SubjectModel.class);
-	}
-
-	@Override
 	public void removeTeacher(String id) {
 		mongoOperations.remove(Query.query(Criteria.where("id").is(id)), TeacherModel.class);
 	}
 
 	@Override
-	public void removeSubject(String id) {
-		mongoOperations.remove(Query.query(Criteria.where("id").is(id)), SubjectModel.class);
-	}
-
-	@Override
 	public TeacherModel getTeacher(String id) {
 		return mongoOperations.findOne(Query.query(Criteria.where("id").is(id)), TeacherModel.class);
-	}
-
-	@Override
-	public SubjectModel getSubject(String id) {
-		return mongoOperations.findOne(Query.query(Criteria.where("id").is(id)), SubjectModel.class);
 	}
 
 }

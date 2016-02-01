@@ -32,4 +32,9 @@ public class DefaultGroupDao implements GroupDao {
 		mongoOperations.remove(Query.query(Criteria.where("id").is(id)), GroupModel.class);
 	}
 
+	@Override
+	public GroupModel getGroup(String id) {
+		return mongoOperations.findById(id, GroupModel.class);
+	}
+
 }
