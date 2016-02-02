@@ -2,9 +2,12 @@ package com.rozdolskyi.traininghneu.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,7 +30,7 @@ public class TeachersManagementController {
 	private TeacherFacade teacherFacade;
 	@Autowired
 	private SubjectFacade subjectFacade;
-	
+
 	@Autowired
 	private StringToSubjectEditor subjectEditor;
 
@@ -37,7 +40,7 @@ public class TeachersManagementController {
 	}
 
 	@RequestMapping
-	public String getAllSubjects(ModelMap model) {
+	public String getAllTeachers(ModelMap model) {
 		List<TeacherData> teachers = teacherFacade.getTeachers();
 		model.addAttribute("teachers", teachers);
 		return "teachers";
@@ -45,17 +48,25 @@ public class TeachersManagementController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView add(ModelMap model) {
+		prepareModel(model);
+		return new ModelAndView("addNewTeacher", "teacher", new TeacherData());
+	}
+
+	private void prepareModel(ModelMap model) {
 		List<SubjectData> allSubjecs = subjectFacade.getSubjects();
 		model.addAttribute("subjectsForChose", allSubjecs);
-		return new ModelAndView("addNewTeacher", "command", new TeacherData());
 	}
-	
+
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(@ModelAttribute("teacher") TeacherData teacher) {
+	public String add(@ModelAttribute("teacher") @Valid TeacherData teacher, BindingResult bindingResult, ModelMap model) {
+		if (bindingResult.hasErrors()) {
+			prepareModel(model);
+			return "addNewTeacher";
+		}
 		teacherFacade.addTeacher(teacher);
 		return "redirect:/management/teachers";
 	}
-	
+
 	@RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
 	public String remove(@PathVariable String id) {
 		teacherFacade.removeTeacher(id);

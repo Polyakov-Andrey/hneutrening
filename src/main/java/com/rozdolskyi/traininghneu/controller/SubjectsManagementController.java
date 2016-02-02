@@ -2,9 +2,12 @@ package com.rozdolskyi.traininghneu.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,11 +33,13 @@ public class SubjectsManagementController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView addSubject() {
-		return new ModelAndView("addNewSubject", "command", new SubjectData());
+		return new ModelAndView("addNewSubject", "subject", new SubjectData());
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addSubject(@ModelAttribute("subject") SubjectData subject) {
+	public String addSubject(@ModelAttribute("subject") @Valid SubjectData subject, BindingResult bindingResult) {
+		if (bindingResult.hasErrors())
+			return "addNewSubject";
 		subjectFacade.addSubject(subject);
 		return "redirect:/management/subjects";
 	}

@@ -7,7 +7,14 @@
 		<spring:message code="label.page.newlesson" />
 	</h2>
 	<c:url var="url" value="add" />
-	<form:form method="POST" action="${url}">
+	<form:form method="POST" action="${url}" commandName="lesson">
+		
+		<c:set var="error"><form:errors path="*" /></c:set>
+		<c:if test="${not empty error }">
+			<div class="form-group alert alert-danger">
+				<form:errors path="*" />
+			</div>
+		</c:if>
 		<div class="form-group">
 			<label for="phone"> <spring:message
 					code="label.page.newlesson.subject" /></label>
@@ -15,6 +22,7 @@
 				cssClass="input-block-level form-control" items="${subjects}"
 				itemLabel="name" itemValue="id" />
 		</div>
+		
 		<div class="form-group">
 			<label for="phone"> <spring:message
 					code="label.page.newlesson.teacher" /></label>
@@ -22,6 +30,7 @@
 				cssClass="input-block-level form-control" items="${teachers}"
 				itemLabel="fullName" itemValue="id" />
 		</div>
+		
 		<div class="form-group">
 			<label for="phone"> <spring:message
 					code="label.page.newlesson.group" /></label>
@@ -29,6 +38,7 @@
 				cssClass="input-block-level form-control" items="${groups}"
 				itemLabel="speciality" itemValue="id" />
 		</div>
+		
 		<div class="form-group">
 			<label for="phone"> <spring:message
 					code="label.page.newlesson.type" /></label>
@@ -36,6 +46,7 @@
 				cssClass="input-block-level form-control" items="${types}"
 				itemLabel="name" itemValue="name" />
 		</div>
+		
 		<div class="form-group">
 			<button type="submit"
 				class="btn btn-success input-block-level form-control">

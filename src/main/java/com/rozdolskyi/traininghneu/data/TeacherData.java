@@ -2,14 +2,29 @@ package com.rozdolskyi.traininghneu.data;
 
 import java.util.List;
 
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class TeacherData {
 
 	private String id;
+	
+	@NotEmpty(message = "{error.field.empty}")
 	private String name;
+
+	@NotEmpty(message = "{error.field.empty}")
 	private String surname;
+
+	@NotEmpty(message = "{error.field.empty}")
 	private String patronymic;
+
+	@NotEmpty(message = "{error.field.empty}")
 	private String phone;
+	
+	@Min(message = "{error.field.number.invalid}", value = 0)
 	private long experience;
+	
 	private List<SubjectData> subjects;
 
 	public String getId() {

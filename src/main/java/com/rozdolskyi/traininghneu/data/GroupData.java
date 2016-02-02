@@ -1,11 +1,22 @@
 package com.rozdolskyi.traininghneu.data;
 
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class GroupData {
 
 	private String id;
+	
+	@NotEmpty(message = "{error.field.empty}")
 	private String speciality;
+	
+	@NotEmpty(message = "{error.field.empty}")
 	private String department;
+	
+	@Min(message = "{error.field.number.invalid}", value = 0)
 	private int studentsCount;
+	
 	public String getId() {
 		return id;
 	}

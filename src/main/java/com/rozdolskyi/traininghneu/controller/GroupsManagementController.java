@@ -2,9 +2,12 @@ package com.rozdolskyi.traininghneu.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,11 +33,13 @@ public class GroupsManagementController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView addGroup() {
-		return new ModelAndView("addNewGroup", "command", new GroupData());
+		return new ModelAndView("addNewGroup", "group", new GroupData());
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addGroup(@ModelAttribute("group") GroupData group) {
+	public String addGroup(@ModelAttribute("group") @Valid GroupData group, BindingResult bindingResult) {
+		if (bindingResult.hasErrors())
+			return "addNewGroup";
 		groupFacade.addGroup(group);
 		return "redirect:/management/groups";
 	}

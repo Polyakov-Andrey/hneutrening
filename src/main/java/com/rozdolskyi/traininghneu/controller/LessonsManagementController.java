@@ -1,10 +1,12 @@
 package com.rozdolskyi.traininghneu.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -47,6 +49,9 @@ public class LessonsManagementController {
 	private StringToGroupEditor groupEditor;
 	@Autowired
 	private StringToTypeEditor typeEditor;
+	@Autowired
+	@Qualifier("lessonValidator")
+	private Validator validator;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -54,29 +59,30 @@ public class LessonsManagementController {
 		binder.registerCustomEditor(TeacherData.class, teacherEditor);
 		binder.registerCustomEditor(GroupData.class, groupEditor);
 		binder.registerCustomEditor(LessonType.class, typeEditor);
+		binder.setValidator(validator);
 	}
 
-	
 	@RequestMapping
 	public String getAllLessons(ModelMap model) {
-		List<LessonData> lessons = lessonFacade.getLessons();
-		model.addAttribute("lessons", lessons);
+		model.addAttribute("lessons", lessonFacade.getLessons());
 		return "lessons";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView addLesson(ModelMap model) {
-		model.addAttribute("subjects", subjectFacade.getSubjects());
-		model.addAttribute("teachers", teacherFacade.getTeachers());
-		model.addAttribute("groups", groupFacade.getGroups());
-		model.addAttribute("types", LessonType.values());
-		return new ModelAndView("addNewLesson", "command", new LessonData());
+		prepareModel(model);
+		return new ModelAndView("addNewLesson", "lesson", new LessonData());
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addLesson(@ModelAttribute("lesson") LessonData lesson) {
+	public ModelAndView addLesson(@ModelAttribute("lesson") @Validated LessonData lesson, BindingResult bindingResult, ModelMap model) {
+		if (bindingResult.hasErrors()) {
+			prepareModel(model);
+			return new ModelAndView("addNewLesson", "lesson", lesson);
+		}
 		lessonFacade.addLesson(lesson);
-		return "redirect:/management/lessons";
+		model.addAttribute("lessons", lessonFacade.getLessons());
+		return new ModelAndView("redirect:/management/lessons");
 	}
 
 	@RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
@@ -85,4 +91,10 @@ public class LessonsManagementController {
 		return "redirect:/management/lessons";
 	}
 
+	private void prepareModel(ModelMap model) {
+		model.addAttribute("subjects", subjectFacade.getSubjects());
+		model.addAttribute("teachers", teacherFacade.getTeachers());
+		model.addAttribute("groups", groupFacade.getGroups());
+		model.addAttribute("types", LessonType.values());
+	}
 }

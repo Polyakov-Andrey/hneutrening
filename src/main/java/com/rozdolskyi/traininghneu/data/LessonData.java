@@ -2,13 +2,10 @@ package com.rozdolskyi.traininghneu.data;
 
 import java.math.BigDecimal;
 
-import org.springframework.data.annotation.Id;
-
 import com.rozdolskyi.traininghneu.enums.LessonType;
 
 public class LessonData {
 
-	@Id
 	private String id;
 	private GroupData group;
 	private TeacherData teacher;
