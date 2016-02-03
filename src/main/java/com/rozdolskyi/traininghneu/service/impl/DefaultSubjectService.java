@@ -35,4 +35,9 @@ public class DefaultSubjectService implements SubjectService {
 		return subjectDao.getSubject(id);
 	}
 
+	@Override
+	public void saveSubject(SubjectModel subjectModel) {
+		subjectDao.saveSubject(subjectModel);
+	}
+
 }

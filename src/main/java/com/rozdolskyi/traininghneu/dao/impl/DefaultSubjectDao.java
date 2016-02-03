@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 
 import com.rozdolskyi.traininghneu.dao.SubjectDao;
@@ -35,6 +37,11 @@ public class DefaultSubjectDao implements SubjectDao {
 	@Override
 	public SubjectModel getSubject(String id) {
 		return mongoOperations.findOne(Query.query(Criteria.where("id").is(id)), SubjectModel.class);
+	}
+
+	@Override
+	public void saveSubject(SubjectModel subjectModel) {
+		mongoOperations.save(subjectModel);
 	}
 
 }

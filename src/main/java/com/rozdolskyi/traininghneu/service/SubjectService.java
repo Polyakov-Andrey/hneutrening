@@ -14,4 +14,6 @@ public interface SubjectService {
 
 	SubjectModel getSubject(String id);
 
+	void saveSubject(SubjectModel subjectModel);
+
 }

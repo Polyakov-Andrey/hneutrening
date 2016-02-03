@@ -14,4 +14,6 @@ public interface SubjectFacade {
 
 	SubjectData getSubject(String id);
 
+	void saveSubject(SubjectData subject);
+
 }

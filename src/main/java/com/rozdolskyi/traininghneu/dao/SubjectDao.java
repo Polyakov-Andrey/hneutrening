@@ -14,4 +14,6 @@ public interface SubjectDao {
 
 	SubjectModel getSubject(String id);
 
+	void saveSubject(SubjectModel subjectModel);
+
 }

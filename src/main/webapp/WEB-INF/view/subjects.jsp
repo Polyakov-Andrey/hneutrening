@@ -7,7 +7,7 @@
 		<spring:message code="label.page.subjects" />
 	</h2>
 	<div class="table-responsive">
-		<table class="table table-striped text-center">
+		<table class="table table-striped table-hover text-center">
 			<thead>
 				<tr>
 					<th class="text-center"><spring:message
@@ -19,7 +19,8 @@
 			</thead>
 			<tbody>
 				<c:forEach var="subject" items="${subjects}">
-					<tr>
+					<tr class="clickable-row"
+						data-href="<c:url value="subjects/update/${subject.id}"/>">
 						<td>${subject.name}</td>
 						<td>${subject.price}</td>
 						<td><a href="<c:url value="subjects/remove/${subject.id}"/>"
@@ -34,4 +35,5 @@
 	</div>
 
 </div>
+
 <%@ include file="jspf/footer.jspf"%>

@@ -35,13 +35,27 @@ public class SubjectsManagementController {
 	public ModelAndView addSubject() {
 		return new ModelAndView("addNewSubject", "subject", new SubjectData());
 	}
-
+	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String addSubject(@ModelAttribute("subject") @Valid SubjectData subject, BindingResult bindingResult) {
 		if (bindingResult.hasErrors())
 			return "addNewSubject";
 		subjectFacade.addSubject(subject);
 		return "redirect:/management/subjects";
+	}
+	
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	public ModelAndView updateSubject(@PathVariable String id) {
+		SubjectData subject = subjectFacade.getSubject(id);
+		return new ModelAndView("updateSubject", "subject", subject);
+	}
+	
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+	public ModelAndView updateSubject(@ModelAttribute("subject") @Valid SubjectData subject, BindingResult bindingResult) {
+		if (bindingResult.hasErrors())
+			return new ModelAndView("updateSubject", "subject", subject);
+		subjectFacade.saveSubject(subject);
+		return new ModelAndView("redirect:/management/subjects");
 	}
 
 	@RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)

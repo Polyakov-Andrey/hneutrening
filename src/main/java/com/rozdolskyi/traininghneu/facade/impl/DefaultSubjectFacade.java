@@ -45,4 +45,10 @@ public class DefaultSubjectFacade implements SubjectFacade {
 		return subjectModelToDataConverter.convert(subjectService.getSubject(id));
 	}
 
+	@Override
+	public void saveSubject(SubjectData subjectData) {
+		SubjectModel subjectModel = subjectDataToModelConverter.convert(subjectData);
+		subjectService.saveSubject(subjectModel);
+	}
+
 }
