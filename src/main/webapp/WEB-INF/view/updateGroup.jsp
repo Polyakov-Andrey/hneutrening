@@ -6,7 +6,7 @@
 	<h2 class="text-center">
 		<spring:message code="label.page.updategroup" />
 	</h2>
-	<c:url var="url" value="" />
+	<c:url var="url" value="/management/groups/update/${group.id}" />
 	<form:form method="POST" action="${url}" commandName="group">
 		<form:input path="id" type="hidden" cssClass="form-control" />
 		

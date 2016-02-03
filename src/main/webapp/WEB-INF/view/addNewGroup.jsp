@@ -6,7 +6,7 @@
 	<h2 class="text-center">
 		<spring:message code="label.page.newgroup" />
 	</h2>
-	<c:url var="url" value="add" />
+	<c:url var="url" value="/management/groups/add" />
 	<form:form method="POST" action="${url}" commandName="group">
 		<div class="form-group">
 			<label for="speciality"><spring:message

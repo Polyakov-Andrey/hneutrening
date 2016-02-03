@@ -19,11 +19,11 @@
 			<tbody>
 				<c:forEach var="teacher" items="${teachers}">
 					<tr class="clickable-row"
-						data-href="<c:url value="teachers/update/${teacher.id}"/>">
+						data-href="<c:url value="/management/teachers/update/${teacher.id}"/>">
 						<td>${teacher.surname} ${teacher.name} ${teacher.patronymic}</td>
 						<td>${teacher.phone}</td>
 						<td>${teacher.experience}</td>
-						<td><a href="<c:url value="teachers/remove/${teacher.id}"/>" class="btn btn-danger"><spring:message code="button.remove" /></a></td>
+						<td><a href="<c:url value="/management/teachers/remove/${teacher.id}"/>" class="btn btn-danger"><spring:message code="button.remove" /></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

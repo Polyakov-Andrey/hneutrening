@@ -3,7 +3,7 @@
 
 <div class="row col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2 col-sm-12">
 	<h2 class="text-center"><spring:message code="label.page.updatesubject" /></h2>
-	<c:url var="url" value=""/>
+	<c:url var="url" value="/management/subjects/update/${subject.id}" />
 	<form:form method="POST" action="${url}" commandName="subject">
 		<form:input path="id" type="hidden" cssClass="form-control" />
 		

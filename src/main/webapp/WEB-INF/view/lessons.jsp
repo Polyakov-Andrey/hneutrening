@@ -26,14 +26,14 @@
 			<tbody>
 				<c:forEach var="lesson" items="${lessons}">
 					<tr class="clickable-row"
-						data-href="<c:url value="lessons/update/${lesson.id}"/>">
+						data-href="<c:url value="/management/lessons/update/${lesson.id}"/>">
 						<td>${lesson.subject.name}</td>
 						<td>${lesson.group.speciality}</td>
 						<td>${lesson.teacher.name}${lesson.teacher.patronymic}
 							${lesson.teacher.surname}</td>
 						<td>${lesson.type.name}</td>
 						<td>${lesson.price}</td>
-						<td><a href="<c:url value="lessons/remove/${lesson.id}"/>"
+						<td><a href="<c:url value="/management/lessons/remove/${lesson.id}"/>"
 							class="btn btn-danger"><spring:message code="button.remove" /></a></td>
 					</tr>
 				</c:forEach>

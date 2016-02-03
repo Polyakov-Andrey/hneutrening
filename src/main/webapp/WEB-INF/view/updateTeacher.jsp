@@ -7,7 +7,7 @@
 	<h2 class="text-center">
 		<spring:message code="label.page.updateteacher" />
 	</h2>
-	<c:url var="url" value="" />
+	<c:url var="url" value="/management/teachers/update/${teacher.id}" />
 	<form:form method="POST" action="${url}" commandName="teacher">
 		<form:input path="id" type="hidden" cssClass="form-control" />
 		

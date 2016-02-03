@@ -6,7 +6,7 @@
 	<h2 class="text-center">
 		<spring:message code="label.page.newlesson" />
 	</h2>
-	<c:url var="url" value="add" />
+	<c:url var="url" value="/management/lessons/add" />
 	<form:form method="POST" action="${url}" commandName="lesson">
 		<c:set var="error"><form:errors path="*" /></c:set>
 		<c:if test="${not empty error }">

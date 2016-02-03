@@ -20,10 +20,10 @@
 			<tbody>
 				<c:forEach var="subject" items="${subjects}">
 					<tr class="clickable-row"
-						data-href="<c:url value="subjects/update/${subject.id}"/>">
+						data-href="<c:url value="/management/subjects/update/${subject.id}"/>">
 						<td>${subject.name}</td>
 						<td>${subject.price}</td>
-						<td><a href="<c:url value="subjects/remove/${subject.id}"/>"
+						<td><a href="<c:url value="/management/subjects/remove/${subject.id}"/>"
 							class="btn btn-danger"><spring:message code="button.remove" /></a></td>
 					</tr>
 				</c:forEach>

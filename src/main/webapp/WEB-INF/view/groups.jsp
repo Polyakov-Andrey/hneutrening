@@ -22,11 +22,11 @@
 			<tbody>
 				<c:forEach var="group" items="${groups}">
 					<tr class="clickable-row"
-						data-href="<c:url value="groups/update/${group.id}"/>">
+						data-href="<c:url value="/management/groups/update/${group.id}"/>">
 						<td>${group.speciality}</td>
 						<td>${group.department}</td>
 						<td>${group.studentsCount}</td>
-						<td><a href="<c:url value="groups/remove/${group.id}"/>"
+						<td><a href="<c:url value="/management/groups/remove/${group.id}"/>"
 							class="btn btn-danger"><spring:message code="button.remove" /></a></td>
 					</tr>
 				</c:forEach>

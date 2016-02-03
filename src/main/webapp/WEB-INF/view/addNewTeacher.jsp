@@ -7,7 +7,7 @@
 	<h2 class="text-center">
 		<spring:message code="label.page.newteacher" />
 	</h2>
-	<c:url var="url" value="add" />
+	<c:url var="url" value="/management/teachers/add" />
 	<form:form method="POST" action="${url}" commandName="teacher">
 		<div class="form-group">
 			<label for="name"><spring:message
