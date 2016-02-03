@@ -37,4 +37,9 @@ public class DefaultTeacherDao implements TeacherDao{
 		return mongoOperations.findOne(Query.query(Criteria.where("id").is(id)), TeacherModel.class);
 	}
 
+	@Override
+	public void saveTeacher(TeacherModel teacherModel) {
+		mongoOperations.save(teacherModel);
+	}
+
 }

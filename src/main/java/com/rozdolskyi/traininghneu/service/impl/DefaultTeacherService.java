@@ -35,4 +35,9 @@ public class DefaultTeacherService implements TeacherService {
 		return teacherDao.getTeacher(id);
 	}
 
+	@Override
+	public void saveTeacher(TeacherModel teacherModel) {
+		teacherDao.saveTeacher(teacherModel);
+	}
+
 }

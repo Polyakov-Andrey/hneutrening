@@ -14,4 +14,6 @@ public interface TeacherFacade {
 
 	TeacherData getTeacher(String id);
 
+	void saveTeacher(TeacherData teacherData);
+
 }

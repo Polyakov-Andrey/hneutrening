@@ -5,9 +5,9 @@
 <div
 	class="row col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2 col-sm-12">
 	<h2 class="text-center">
-		<spring:message code="label.page.newteacher" />
+		<spring:message code="label.page.updateteacher" />
 	</h2>
-	<c:url var="url" value="add" />
+	<c:url var="url" value="" />
 	<form:form method="POST" action="${url}" commandName="teacher">
 		<form:input path="id" type="hidden" cssClass="form-control" />
 		
@@ -80,7 +80,7 @@
 		
 		<div class="form-group">
 			<button type="submit" class="btn btn-success input-block-level form-control">
-				<spring:message code="button.add" />
+				<spring:message code="button.save" />
 			</button>
 		</div>
 	</form:form>

@@ -67,6 +67,23 @@ public class TeachersManagementController {
 		return "redirect:/management/teachers";
 	}
 
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	public ModelAndView updateTeacher(@PathVariable String id, ModelMap model) {
+		TeacherData teacher = teacherFacade.getTeacher(id);
+		prepareModel(model);
+		return new ModelAndView("updateTeacher", "teacher", teacher);
+	}
+	
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+	public ModelAndView updateTeacher(@ModelAttribute("teacher") @Valid TeacherData teacher, BindingResult bindingResult, ModelMap model) {
+		if (bindingResult.hasErrors()) {
+			prepareModel(model);
+			return new ModelAndView("updateTeacher", "teacher", teacher);
+		}
+		teacherFacade.saveTeacher(teacher);
+		return new ModelAndView("redirect:/management/teachers");
+	}
+	
 	@RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
 	public String remove(@PathVariable String id) {
 		teacherFacade.removeTeacher(id);

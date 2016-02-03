@@ -45,4 +45,10 @@ public class DefaultTeacherFacade implements TeacherFacade {
 		return teacherModelToDataConverter.convert(teacherService.getTeacher(id));
 	}
 
+	@Override
+	public void saveTeacher(TeacherData teacherData) {
+		TeacherModel teacherModel = teacherDataToModelConverter.convert(teacherData);
+		teacherService.saveTeacher(teacherModel);
+	}
+
 }

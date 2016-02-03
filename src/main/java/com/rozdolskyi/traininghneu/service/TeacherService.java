@@ -13,4 +13,6 @@ public interface TeacherService {
 	void removeTeacher(String id);
 
 	TeacherModel getTeacher(String id);
+
+	void saveTeacher(TeacherModel teacherModel);
 }
