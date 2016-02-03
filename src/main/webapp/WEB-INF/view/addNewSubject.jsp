@@ -5,8 +5,6 @@
 	<h2 class="text-center"><spring:message code="label.page.newsubject" /></h2>
 	<c:url var="url" value="add"/>
 	<form:form method="POST" action="${url}" commandName="subject">
-		<form:input path="id" type="hidden" cssClass="form-control" />
-		
 		<div class="form-group">
 			<label for="name"><spring:message code="label.page.newsubject.name"/></label>
 			<form:input path="name" cssClass="form-control" />

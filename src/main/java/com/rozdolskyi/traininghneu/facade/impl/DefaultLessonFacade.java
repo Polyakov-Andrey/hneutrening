@@ -48,4 +48,10 @@ public class DefaultLessonFacade implements LessonFacade {
 		return lessonModelToDataConverter.convert(lessonModel);
 	}
 
+	@Override
+	public void saveLesson(LessonData lessonData) {
+		LessonModel lessonModel = lessonDataToModelConverter.convert(lessonData);
+		lessonService.saveLesson(lessonModel);
+	}
+
 }

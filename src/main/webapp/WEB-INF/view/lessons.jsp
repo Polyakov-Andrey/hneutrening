@@ -7,7 +7,7 @@
 		<spring:message code="label.page.lessons" />
 	</h2>
 	<div class="table-responsive">
-		<table class="table table-striped text-center">
+		<table class="table table-striped table-hover text-center">
 			<thead>
 				<tr>
 					<th class="text-center"><spring:message
@@ -25,7 +25,8 @@
 			</thead>
 			<tbody>
 				<c:forEach var="lesson" items="${lessons}">
-					<tr>
+					<tr class="clickable-row"
+						data-href="<c:url value="lessons/update/${lesson.id}"/>">
 						<td>${lesson.subject.name}</td>
 						<td>${lesson.group.speciality}</td>
 						<td>${lesson.teacher.name}${lesson.teacher.patronymic}

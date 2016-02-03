@@ -37,4 +37,9 @@ public class DefaultLessonDao implements LessonDao {
 		return mongoOperations.findOne(Query.query(Criteria.where("id").is(id)), LessonModel.class);
 	}
 
+	@Override
+	public void saveLesson(LessonModel lessonModel) {
+		mongoOperations.save(lessonModel);
+	}
+
 }

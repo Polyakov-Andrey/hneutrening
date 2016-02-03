@@ -8,8 +8,6 @@
 	</h2>
 	<c:url var="url" value="add" />
 	<form:form method="POST" action="${url}" commandName="group">
-		<form:input path="id" type="hidden" cssClass="form-control" />
-		
 		<div class="form-group">
 			<label for="speciality"><spring:message
 					code="label.page.newgroup.speciality" /></label>

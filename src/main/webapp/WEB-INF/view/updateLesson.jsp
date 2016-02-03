@@ -4,9 +4,9 @@
 <div
 	class="row col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2 col-sm-12">
 	<h2 class="text-center">
-		<spring:message code="label.page.newlesson" />
+		<spring:message code="label.page.updatelesson" />
 	</h2>
-	<c:url var="url" value="add" />
+	<c:url var="url" value="/management/lessons/update/${lesson.id}" />
 	<form:form method="POST" action="${url}" commandName="lesson">
 		<c:set var="error"><form:errors path="*" /></c:set>
 		<c:if test="${not empty error }">
@@ -14,6 +14,9 @@
 				<form:errors path="*" />
 			</div>
 		</c:if>
+		
+		<form:input path="id" type="hidden" cssClass="form-control" />
+		
 		<div class="form-group">
 			<label for="phone"> <spring:message
 					code="label.page.newlesson.subject" /></label>
@@ -49,7 +52,7 @@
 		<div class="form-group">
 			<button type="submit"
 				class="btn btn-success input-block-level form-control">
-				<spring:message code="button.add" />
+				<spring:message code="button.save" />
 			</button>
 		</div>
 	</form:form>

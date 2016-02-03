@@ -14,4 +14,6 @@ public interface LessonDao {
 
 	LessonModel getLesson(String id);
 
+	void saveLesson(LessonModel lessonModel);
+
 }

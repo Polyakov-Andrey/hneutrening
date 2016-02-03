@@ -23,13 +23,17 @@ public class DefaultLessonService implements LessonService{
 	
 	@Override
 	public void addLesson(LessonModel lessonModel) {
+		lessonModel.setPrice(calculatePrice(lessonModel).setScale(2));
+		lessonDao.addLesson(lessonModel);
+	}
+
+	private BigDecimal calculatePrice(LessonModel lessonModel) {
 		double premiumCoefficient = lessonModel.getTeacher().getExperience() * EXPERIENCE_COEFFICIENT;
 		double lessonTypeCoefficient = getLessonTypeCoeffiect(lessonModel.getType());
 		BigDecimal subjectDefaultPrice = lessonModel.getSubject().getPrice();
 		BigDecimal premium = subjectDefaultPrice.multiply(BigDecimal.valueOf(premiumCoefficient));
 		BigDecimal totalLessonPrice = subjectDefaultPrice.add(premium).multiply(BigDecimal.valueOf(lessonTypeCoefficient));
-		lessonModel.setPrice(totalLessonPrice.setScale(2));
-		lessonDao.addLesson(lessonModel);
+		return totalLessonPrice;
 	}
 
 	private double getLessonTypeCoeffiect(LessonType type) {
@@ -51,6 +55,12 @@ public class DefaultLessonService implements LessonService{
 	@Override
 	public LessonModel getLesson(String id) {
 		return lessonDao.getLesson(id);
+	}
+
+	@Override
+	public void saveLesson(LessonModel lessonModel) {
+		lessonModel.setPrice(calculatePrice(lessonModel).setScale(2));
+		lessonDao.saveLesson(lessonModel);
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.rozdolskyi.traininghneu.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -89,6 +91,23 @@ public class LessonsManagementController {
 	public String remove(@PathVariable String id) {
 		lessonFacade.removeLesson(id);
 		return "redirect:/management/lessons";
+	}
+	
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	public ModelAndView updateLesson(@PathVariable String id, ModelMap model) {
+		LessonData lesson = lessonFacade.getLesson(id);
+		prepareModel(model);
+		return new ModelAndView("updateLesson", "lesson", lesson);
+	}
+	
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+	public ModelAndView updateLesson(@ModelAttribute("lesson") @Valid LessonData lesson, BindingResult bindingResult, ModelMap model) {
+		if (bindingResult.hasErrors()) {
+			prepareModel(model);
+			return new ModelAndView("updateLesson", "lesson", lesson);
+		}
+		lessonFacade.saveLesson(lesson);
+		return new ModelAndView("redirect:/management/lessons");
 	}
 
 	private void prepareModel(ModelMap model) {

@@ -14,4 +14,6 @@ public interface LessonFacade {
 
 	LessonData getLesson(String id);
 
+	void saveLesson(LessonData lessonData);
+
 }

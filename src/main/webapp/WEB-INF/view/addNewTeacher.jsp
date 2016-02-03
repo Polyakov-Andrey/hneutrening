@@ -9,8 +9,6 @@
 	</h2>
 	<c:url var="url" value="add" />
 	<form:form method="POST" action="${url}" commandName="teacher">
-		<form:input path="id" type="hidden" cssClass="form-control" />
-		
 		<div class="form-group">
 			<label for="name"><spring:message
 					code="label.page.newteacher.name" /></label>

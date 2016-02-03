@@ -13,5 +13,7 @@ public interface LessonService {
 	void removeLesson(String id);
 
 	LessonModel getLesson(String id);
+
+	void saveLesson(LessonModel lessonModel);
 	
 }
