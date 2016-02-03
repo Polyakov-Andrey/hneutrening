@@ -7,7 +7,7 @@
 		<spring:message code="label.page.groups" />
 	</h2>
 	<div class="table-responsive">
-		<table class="table table-striped text-center">
+		<table class="table table-striped table-hover text-center">
 			<thead>
 				<tr>
 					<th class="text-center"><spring:message
@@ -21,7 +21,8 @@
 			</thead>
 			<tbody>
 				<c:forEach var="group" items="${groups}">
-					<tr>
+					<tr class="clickable-row"
+						data-href="<c:url value="groups/update/${group.id}"/>">
 						<td>${group.speciality}</td>
 						<td>${group.department}</td>
 						<td>${group.studentsCount}</td>

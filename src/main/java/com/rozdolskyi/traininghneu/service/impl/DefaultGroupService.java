@@ -35,4 +35,9 @@ public class DefaultGroupService implements GroupService {
 		return groupDao.getGroup(id);
 	}
 
+	@Override
+	public void saveGroup(GroupModel groupModel) {
+		groupDao.saveGroup(groupModel);
+	}
+
 }

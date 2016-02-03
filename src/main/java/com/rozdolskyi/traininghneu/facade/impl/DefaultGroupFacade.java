@@ -46,4 +46,10 @@ public class DefaultGroupFacade implements GroupFacade {
 		return groupModelToDataConverter.convert(groupModel);
 	}
 
+	@Override
+	public void saveGroup(GroupData groupData) {
+		GroupModel groupModel = groupDataToModelConverter.convert(groupData);
+		groupService.saveGroup(groupModel);
+	}
+
 }

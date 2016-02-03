@@ -14,4 +14,6 @@ public interface GroupDao {
 
 	GroupModel getGroup(String id);
 
+	void saveGroup(GroupModel groupModel);
+
 }

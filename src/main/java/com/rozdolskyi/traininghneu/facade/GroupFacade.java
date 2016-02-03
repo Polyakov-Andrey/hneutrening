@@ -13,5 +13,7 @@ public interface GroupFacade {
 	void removeGroup(String id);
 	
 	GroupData getGroup(String id);
+
+	void saveGroup(GroupData groupData);
 		
 }

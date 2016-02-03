@@ -43,6 +43,20 @@ public class GroupsManagementController {
 		groupFacade.addGroup(group);
 		return "redirect:/management/groups";
 	}
+	
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	public ModelAndView updateGroup(@PathVariable String id) {
+		GroupData group = groupFacade.getGroup(id);
+		return new ModelAndView("updateGroup", "group", group);
+	}
+	
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+	public ModelAndView updateGroup(@ModelAttribute("group") @Valid GroupData group, BindingResult bindingResult) {
+		if (bindingResult.hasErrors())
+			return new ModelAndView("updateGroup", "group", group);
+		groupFacade.saveGroup(group);
+		return new ModelAndView("redirect:/management/groups");
+	}
 
 	@RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
 	public String remove(@PathVariable String id) {

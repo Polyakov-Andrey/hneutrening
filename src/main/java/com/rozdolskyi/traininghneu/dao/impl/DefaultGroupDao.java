@@ -37,4 +37,9 @@ public class DefaultGroupDao implements GroupDao {
 		return mongoOperations.findById(id, GroupModel.class);
 	}
 
+	@Override
+	public void saveGroup(GroupModel groupModel) {
+		mongoOperations.save(groupModel);
+	}
+
 }

@@ -7,7 +7,7 @@
 		<spring:message code="label.page.teachers" />
 	</h2>
 	<div class="table-responsive">
-		<table class="table table-striped text-center">
+		<table class="table table-striped table-hover text-center">
 			<thead>
 				<tr>
 					<th class="text-center"><spring:message code="label.page.newsubject.name" /></th>
