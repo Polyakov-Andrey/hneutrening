@@ -3,7 +3,7 @@
 	<div class="row">
 		<ul class="thumbnails">
 			<li class="col-lg-4 col-md-4 col-sm-6"><a
-				href="<c:url value="/management/info"/>" class="thumbnail"> <img
+				href="<c:url value="/info"/>" class="thumbnail"> <img
 					alt="" src="<c:url value="/resources/img/dashboard.jpg"/>">
 			</a></li>
 			<li class="col-lg-3 col-md-4 col-sm-6"><a

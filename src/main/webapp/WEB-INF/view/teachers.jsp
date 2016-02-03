@@ -13,6 +13,7 @@
 					<th class="text-center"><spring:message code="label.page.newsubject.name" /></th>
 					<th class="text-center"><spring:message code="label.page.newteacher.phone" /></th>
 					<th class="text-center"><spring:message code="label.page.newteacher.experience" /></th>
+					<th class="text-center"><spring:message code="label.page.newteacher.salary" /></th>
 					<th class="text-center"></th>
 				</tr>
 			</thead>
@@ -23,6 +24,7 @@
 						<td>${teacher.surname} ${teacher.name} ${teacher.patronymic}</td>
 						<td>${teacher.phone}</td>
 						<td>${teacher.experience}</td>
+						<td>${teacher.salary}</td>
 						<td><a href="<c:url value="/management/teachers/remove/${teacher.id}"/>" class="btn btn-danger"><spring:message code="button.remove" /></a></td>
 					</tr>
 				</c:forEach>
