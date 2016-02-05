@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util 
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <context:component-scan
+            base-package="com.epam.yaas.productscomparison"/>
+
+    <bean id="accessTokenProvider"
+          class="com.sap.cloud.yaas.servicesdk.authorization.cache.SimpleCachingProviderWrapper">
+        <constructor-arg>
+            <bean
+                    class="com.sap.cloud.yaas.servicesdk.authorization.protocol.ClientCredentialsGrantProvider">
+                <property name="tokenEndpointUri" value="https://api.yaas.io/hybris/oauth2/v1/token"/>
+                <property name="clientId" value="${CLIENT_ID}"/>
+                <property name="clientSecret" value="${CLIENT_SECRET}"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+
+    <bean id="authorizedExecutionTemplate" autowire-candidate="true"
+          class="com.sap.cloud.yaas.servicesdk.authorization.integration.AuthorizedExecutionTemplate">
+        <constructor-arg ref="accessTokenProvider"/>
+    </bean>
+
+    <bean id="productComparisonApiClient"
+          class="com.epam.yaas.productscomparison.client.HybrisProductsApiClient">
+        <constructor-arg name="baseUri">
+            <util:constant
+                    static-field="com.epam.yaas.productscomparison.client.HybrisProductsApiClient.DEFAULT_BASE_URI"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="hybrisProductsDetailsApiClient"
+          class="com.epam.yaas.productscomparison.client.HybrisProductsDetailsApiClient">
+        <constructor-arg name="baseUri">
+            <util:constant
+                    static-field="com.epam.yaas.productscomparison.client.HybrisProductsDetailsApiClient.DEFAULT_BASE_URI"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="categoryApiClient"
+          class="com.epam.yaas.productscomparison.client.HybrisCategoryApiClient">
+        <constructor-arg name="baseUri">
+            <util:constant
+                    static-field="com.epam.yaas.productscomparison.client.HybrisCategoryApiClient.DEFAULT_BASE_URI"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="pcmApiClient"
+          class="com.epam.yaas.productscomparison.client.pcm.HybrisPcmApiClient">
+        <constructor-arg name="baseUri">
+            <util:constant
+                    static-field="com.epam.yaas.productscomparison.client.pcm.HybrisPcmApiClient.DEFAULT_BASE_URI"/>
+        </constructor-arg>
+    </bean>
+
+    <!-- refactor notes: get rid of these services -->
+    <bean id="comparedProductService"
+          class="com.epam.yaas.productscomparison.service.impl.DefaultComparedProductService"/>
+
+    <bean id="comparisonStorage"
+          class="com.epam.yaas.productscomparison.service.impl.DefaultComparisonStorageService"/>
+
+    <bean id="productsComparisonService"
+          class="com.epam.yaas.productscomparison.service.impl.DefaultProductsComparisonService"/>
+
+    <!-- refactor notes: new components here -->
+
+    <bean id="productDetailsModelConverter" class="com.epam.yaas.productscomparison.converters.ModelConverter">
+        <constructor-arg index="0" value="com.epam.yaas.productscomparison.api.generated.YaasProductDetails"/>
+    </bean>
+    
+    <bean id="categoryModelConverter" class="com.epam.yaas.productscomparison.converters.ModelConverter">
+        <constructor-arg index="0" value="com.epam.yaas.productscomparison.api.generated.YaasCategory"/>
+    </bean>
+
+</beans>
