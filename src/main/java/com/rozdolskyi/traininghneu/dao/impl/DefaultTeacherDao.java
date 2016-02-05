@@ -24,7 +24,11 @@ public class DefaultTeacherDao implements TeacherDao{
 
 	@Override
 	public List<TeacherModel> getTeachers() {
-		return mongoOperations.findAll(TeacherModel.class);
+        mongoOperations.createCollection("teachers");
+        mongoOperations.createCollection("lessons");
+        mongoOperations.createCollection("subjects");
+        mongoOperations.createCollection("groups");
+        return mongoOperations.findAll(TeacherModel.class);
 	}
 
 	@Override
