@@ -18,8 +18,8 @@ public class DefaultTeacherDao implements TeacherDao{
 	private MongoOperations mongoOperations;
 
 	@Override
-	public void addTeacher(TeacherModel teacherModel) {
-		mongoOperations.save(teacherModel);
+    public void addTeacher(TeacherModel teacherModel) {
+        mongoOperations.save(teacherModel);
 	}
 
 	@Override

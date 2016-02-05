@@ -6,7 +6,7 @@ import com.rozdolskyi.traininghneu.model.TeacherModel;
 
 public interface TeacherDao {
 
-	void addTeacher(TeacherModel teacherModel);
+    void addTeacher(TeacherModel teacherModel);
 	
 	List<TeacherModel> getTeachers();
 

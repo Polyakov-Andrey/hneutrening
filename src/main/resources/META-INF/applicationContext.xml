@@ -10,28 +10,4 @@
     <context:annotation-config/>
     <context:property-placeholder/>
 
-    <bean id="mongoURI" class="com.mongodb.MongoURI">
-      <constructor-arg value="${PROD_MONGODB}"/>
-    </bean>
-
-    <!-- create db object by calling getDB on mongo bean -->
-    <bean id="db" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-      <property name="targetObject"><ref local="mongoURI"/></property>
-      <property name="targetMethod"><value>connectDB</value></property>
-    </bean>
-
-    <!-- call authenticate on db object -->
-    <bean id="authenticateDB"
-        class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-        <property name="targetObject"><ref local="db" /></property>
-        <property name="targetMethod">
-            <value>authenticate</value>
-        </property>
-        <property name="arguments">
-            <list>
-                <value>rozodlski</value>
-                <value>Rozdolski1994</value>
-            </list>
-        </property>
-    </bean>
 </beans>
